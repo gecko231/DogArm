@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    bool facingRight = true;
+    bool facingRight = false;
     private Rigidbody2D rb;
     public float speed = 15f;
     public float jumpForce = 175f;
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
             Debug.LogError("No Graphics Objects as a child of Player");
         }
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         // moving right
