@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: ba42ea61a582a4d44b39da7c59b3f444
+timeCreated: 1459812981
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BoyWalk8
+    21300002: BoyWalk7
+    21300004: BoyWalk6
+    21300006: BoyWalk5
+    21300008: BoyWalk4
+    21300010: BoyWalk3
+    21300012: BoyWalk2
+    21300014: BoyWalk1
+    21300016: Complete spritesheet_8
+    21300018: BoyIdle
+    21300020: Complete spritesheet_10
+    21300022: Complete spritesheet_11
+    21300024: Complete spritesheet_12
+    21300026: Complete spritesheet_13
+    21300028: Complete spritesheet_14
+    21300030: Complete spritesheet_15
+    21300032: Complete spritesheet_16
+    21300034: Complete spritesheet_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 15
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BoyWalk8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 236
+        width: 52
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 44.5}
+        - {x: -23, y: 24.5}
+        - {x: -26, y: 0.5}
+        - {x: -26, y: -44.5}
+        - {x: 19, y: -44.5}
+        - {x: 25, y: -40.5}
+        - {x: 26, y: -40.5}
+        - {x: 26, y: 44.5}
+    - name: BoyWalk7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 236
+        width: 61
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 44}
+        - {x: -30.5, y: 38}
+        - {x: -30.5, y: -11}
+        - {x: -26.5, y: -42}
+        - {x: -23.5, y: -44}
+        - {x: 13.5, y: -44}
+        - {x: 19.5, y: -35}
+        - {x: 24.5, y: -27}
+        - {x: 24.5, y: 44}
+    - name: BoyWalk6
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 236
+        width: 39
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 44}
+        - {x: -19.5, y: -41}
+        - {x: -18.5, y: -44}
+        - {x: 14.5, y: -44}
+        - {x: 19.5, y: -14}
+        - {x: 19.5, y: 44}
+    - name: BoyWalk5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 238
+        width: 46
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 3}
+        - {x: 22, y: 11}
+        - {x: 16, y: 13}
+        - {x: 14, y: 13}
+        - {x: 23, y: 14}
+        - {x: 23, y: 44}
+        - {x: -17, y: 44}
+        - {x: -23, y: 43}
+        - {x: -23, y: -24}
+        - {x: -20, y: -44}
+        - {x: 12, y: -44}
+        - {x: 13, y: -42}
+        - {x: 13, y: -35}
+        - {x: 23, y: -15}
+    - name: BoyWalk4
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 236
+        width: 48
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 44}
+        - {x: -24, y: 23}
+        - {x: -24, y: -38}
+        - {x: -23, y: -44}
+        - {x: 18, y: -44}
+        - {x: 24, y: -37}
+        - {x: 24, y: 44}
+    - name: BoyWalk3
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 236
+        width: 50
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 43.5}
+        - {x: -25, y: -43.5}
+        - {x: 25, y: -43.5}
+        - {x: 25, y: 43.5}
+    - name: BoyWalk2
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 235
+        width: 42
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 44.5}
+        - {x: -21, y: 41.5}
+        - {x: -21, y: -44.5}
+        - {x: 19, y: -44.5}
+        - {x: 21, y: -35.5}
+        - {x: 21, y: 44.5}
+    - name: BoyWalk1
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 236
+        width: 47
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 43.5}
+        - {x: -23.5, y: 13.5}
+        - {x: -23.5, y: -43.5}
+        - {x: 14.5, y: -43.5}
+        - {x: 18.5, y: -42.5}
+        - {x: 23.5, y: -19.5}
+        - {x: 23.5, y: 43.5}
+    - name: Complete spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 63
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 46}
+        - {x: -29.5, y: 35}
+        - {x: -29.5, y: -7}
+        - {x: -23.5, y: -46}
+        - {x: 30.5, y: -46}
+        - {x: 31.5, y: -45}
+        - {x: 31.5, y: 39}
+        - {x: 29.5, y: 46}
+      - - {x: -31.5, y: -30}
+        - {x: -28.5, y: -29}
+        - {x: -28.5, y: -26}
+        - {x: -30.5, y: -24}
+        - {x: -31.5, y: -24}
+    - name: BoyIdle
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 125
+        width: 51
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.5, y: -32}
+        - {x: -2.5, y: -42}
+        - {x: -0.5, y: -44}
+        - {x: 23.5, y: -44}
+        - {x: 25.5, y: -43}
+        - {x: 25.5, y: 23}
+        - {x: 19.5, y: 44}
+        - {x: -21.5, y: 44}
+        - {x: -23.5, y: 43}
+        - {x: -25.5, y: 30}
+        - {x: -25.5, y: -44}
+        - {x: -3.5, y: -44}
+        - {x: -2.5, y: -41}
+        - {x: -2.5, y: -28}
+        - {x: -1.5, y: -27}
+    - name: Complete spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 55
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25.5, y: 46}
+        - {x: -27.5, y: 35}
+        - {x: -27.5, y: -46}
+        - {x: 27.5, y: -46}
+        - {x: 27.5, y: 42}
+        - {x: 21.5, y: 46}
+    - name: Complete spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1
+        width: 63
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 45.5}
+        - {x: -31.5, y: 42.5}
+        - {x: -31.5, y: 4.5}
+        - {x: -19.5, y: -45.5}
+        - {x: 19.5, y: -45.5}
+        - {x: 30.5, y: -40.5}
+        - {x: 31.5, y: -31.5}
+        - {x: 31.5, y: 45.5}
+    - name: Complete spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 1
+        width: 42
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 46}
+        - {x: -21, y: -46}
+        - {x: 17, y: -46}
+        - {x: 21, y: -29}
+        - {x: 21, y: 46}
+    - name: Complete spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 3
+        width: 65
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32.5, y: 40}
+        - {x: 17.5, y: 46}
+        - {x: -32.5, y: 46}
+        - {x: -32.5, y: -42}
+        - {x: -27.5, y: -46}
+        - {x: 2.5, y: -46}
+        - {x: 3.5, y: -44}
+        - {x: 14.5, y: -17}
+        - {x: 32.5, y: 21}
+    - name: Complete spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1
+        width: 49
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 46}
+        - {x: -24.5, y: 43}
+        - {x: -24.5, y: -46}
+        - {x: 24.5, y: -46}
+        - {x: 24.5, y: 46}
+    - name: Complete spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 1
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 45.5}
+        - {x: -25, y: 42.5}
+        - {x: -25, y: -30.5}
+        - {x: -19, y: -45.5}
+        - {x: 21, y: -45.5}
+        - {x: 25, y: -37.5}
+        - {x: 25, y: 42.5}
+        - {x: 23, y: 45.5}
+    - name: Complete spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 0
+        width: 43
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.5, y: 47}
+        - {x: -21.5, y: 39}
+        - {x: -21.5, y: -37}
+        - {x: -17.5, y: -47}
+        - {x: 21.5, y: -47}
+        - {x: 21.5, y: 41}
+        - {x: 14.5, y: 47}
+    - name: Complete spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1
+        width: 50
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18, y: 45.5}
+        - {x: -13, y: 45.5}
+        - {x: -22, y: 42.5}
+        - {x: -25, y: -0.5}
+        - {x: -25, y: -36.5}
+        - {x: -11, y: -45.5}
+        - {x: 12, y: -45.5}
+        - {x: 18, y: -35.5}
+        - {x: 25, y: 10.5}
+        - {x: 25, y: 39.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
