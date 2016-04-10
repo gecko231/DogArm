@@ -1,0 +1,62 @@
+#!/bin/bash
+set -euo pipefail
+
+toplevel=$(git rev-parse --show-toplevel)
+GIT=git
+
+function interactive {
+	echo "What scene are you trynna load?"
+	read -i "Assets/Scenes/" -e scenepath
+	echo "What branches?"
+	read -a branches
+	dothing
+
+}
+
+# ASSUMPTIONS: all scenes end in .unity
+# PARAMS:
+#	$1: scene path
+function scenename {
+	scenename=$(basename "$1")
+	scenename="${scenename%.unity}"
+	echo "$scenename"
+}
+
+# PARAMS:
+#	$1: scene path
+#	$2: branch name
+function filename {
+	scene="$1"
+	scenefolder=$(dirname "$scene")
+	scenename=$(scenename "$scene")
+	branchname=$(echo "$2" | tr / -)
+
+	echo "$scenefolder/$scenename.$branchname.unity"
+}
+
+# PARAMS:
+#	$scenepath
+#	$branches: ARRAY
+function dothing {
+	scenename=$(scenename "$scenepath")
+	for branch in "${branches[@]}"; do
+		filename=$(filename "$scenepath" "$branch")
+		echo "Putting scene $scenename from branch $branch in $filename"
+		$GIT cat-file blob "${branch}:${scenepath}" > "$filename"
+	done
+}
+
+function main {
+	case $# in
+		0) interactive ;;
+		1) echo "Ambiguous: need 0 (interactive) or more than 1 (./scenemerge SCENEFILE BRANCH1 BRANCH2 BRANCH3) arguments." >&2 ;;
+		*)
+			scenepath="$1"
+			shift
+			branches=("$@")
+			dothing
+			;;
+	esac
+}
+
+if [[ $(basename "$0") != "bash" ]]; then main "$@"; fi
