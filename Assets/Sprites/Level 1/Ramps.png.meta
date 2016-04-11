@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: b187276377344da4faa1883df2b8d5da
+timeCreated: 1459798772
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Ramps_0
+    21300002: Ramps_1
+    21300004: Ramps_2
+    21300006: Ramps_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Ramps_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1082
+        width: 358
+        height: 358
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 149, y: 169}
+        - {x: -169, y: -149}
+        - {x: -169, y: -152}
+        - {x: -146, y: -175}
+        - {x: -144, y: -175}
+        - {x: 175, y: 144}
+        - {x: 175, y: 146}
+        - {x: 152, y: 169}
+    - name: Ramps_1
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 1063
+        width: 554
+        height: 377
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 213, y: -151.5}
+        - {x: 211, y: -151.5}
+        - {x: 209, y: -153.5}
+        - {x: 206, y: -173.5}
+        - {x: 219, y: -175.5}
+        - {x: 236, y: -175.5}
+        - {x: 237, y: -152.5}
+        - {x: 233, y: -150.5}
+        - {x: 232, y: 136.5}
+        - {x: 248, y: 136.5}
+        - {x: 250, y: 138.5}
+        - {x: 250, y: 168.5}
+        - {x: 248, y: 170.5}
+        - {x: -258, y: 170.5}
+        - {x: -258, y: 133.5}
+        - {x: -242, y: 136.5}
+        - {x: -244, y: -152.5}
+        - {x: -246, y: -154.5}
+        - {x: -249, y: -174.5}
+        - {x: -245, y: -175.5}
+        - {x: -219, y: -175.5}
+        - {x: -218, y: -153.5}
+        - {x: -222, y: -151.5}
+        - {x: -223, y: 65.5}
+    - name: Ramps_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 587
+        width: 428
+        height: 313
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 185, y: -111.5}
+        - {x: 185, y: -107.5}
+        - {x: 184, y: -106.5}
+        - {x: 184, y: 111.5}
+        - {x: 182, y: 113.5}
+        - {x: -181, y: 113.5}
+        - {x: -183, y: 111.5}
+        - {x: -183, y: -104.5}
+        - {x: -186, y: -105.5}
+        - {x: -186, y: -108.5}
+        - {x: -185, y: -109.5}
+        - {x: -185, y: -112.5}
+        - {x: -181, y: -117.5}
+        - {x: -176, y: -117.5}
+        - {x: -174, y: -116.5}
+        - {x: -173, y: -114.5}
+        - {x: 182, y: -114.5}
+    - name: Ramps_3
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 585
+        width: 452
+        height: 331
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 186, y: -118.5}
+        - {x: 186, y: -114.5}
+        - {x: 185, y: -113.5}
+        - {x: 185, y: 104.5}
+        - {x: 183, y: 106.5}
+        - {x: -180, y: 106.5}
+        - {x: -182, y: 104.5}
+        - {x: -182, y: -111.5}
+        - {x: -185, y: -112.5}
+        - {x: -185, y: -115.5}
+        - {x: -184, y: -116.5}
+        - {x: -184, y: -119.5}
+        - {x: -180, y: -124.5}
+        - {x: -175, y: -124.5}
+        - {x: -173, y: -123.5}
+        - {x: -172, y: -121.5}
+        - {x: 183, y: -121.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
