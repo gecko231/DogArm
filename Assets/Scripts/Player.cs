@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
 
     private Rigidbody2D rb;
+    private bool isShowing = false;
     public float speed = 15f;
     public float jumpForce = 175f;
     private float maxSpeed = 3f;
@@ -12,10 +14,11 @@ public class Player : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && rb.velocity.x < maxSpeed)
+
+    // Update is called once per frame
+    void Update()
+    {
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && rb.velocity.x < maxSpeed)
         {
             rb.AddForce(Vector2.right * speed);
         }
