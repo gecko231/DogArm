@@ -14,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -50,4 +50,13 @@ TagManager:
     locked: 0
   - name: Fence
     uniqueID: 3053724235
+    locked: 0
+  - name: Ground
+    uniqueID: 4255190667
+    locked: 0
+  - name: Grass
+    uniqueID: 3477098413
+    locked: 0
+  - name: Bridge
+    uniqueID: 1469808511
     locked: 0

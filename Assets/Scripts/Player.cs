@@ -9,7 +9,9 @@ public class Player : MonoBehaviour {
     public float jumpForce = 175f;
     private float maxSpeed = 3f;
     private bool canJump = false;
-
+	float myWidth;
+	public LayerMask playerMask;
+	Transform myTrans;
     Transform playerGraphics; // reference to graphics for changing direction
     Animator animator; // reference to the character animator
 
@@ -22,6 +24,9 @@ public class Player : MonoBehaviour {
         if(playerGraphics == null){
             Debug.LogError("No Graphics Objects as a child of Player");
         }
+
+		myTrans = this.transform;
+		//myWidth = this.GetComponent<SpriteRenderer>().bounds.extents.x;
 	}
 
 	// Update is called once per frame
@@ -71,12 +76,22 @@ public class Player : MonoBehaviour {
         }
     }
 
+	void FixedUpdate(){
+		//Check to see if there is ground in front of us before moving
+		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * -0.15f + Vector2.up * -0.15f;
+		Debug.DrawLine (lineCastPos, lineCastPos + Vector2.down * 0.35f);
+		bool isGrounded = Physics2D.Linecast (lineCastPos, lineCastPos + Vector2.down * 0.35f, playerMask);
+
+		if (isGrounded) {
+			canJump = true;
+		} else {
+			canJump = false;
+		}
+	}
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Platform")
-        {
-            canJump = true;
-        }
+    
     }
 
     void Flip (){
