@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: 49475576714a3044aaee97e0ac226585
+timeCreated: 1460946730
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ground tiles_0
+    21300002: ground tiles_1
+    21300004: ground tiles_2
+    21300006: ground tiles_3
+    21300008: ground tiles_4
+    21300010: ground tiles_5
+    21300012: ground tiles_6
+    21300014: ground tiles_7
+    21300016: ground tiles_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ground tiles_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 262
+        width: 132
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66, y: 37.5}
+        - {x: -66, y: -37.5}
+        - {x: 66, y: -37.5}
+        - {x: 66, y: 37.5}
+    - name: ground tiles_1
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 262
+        width: 132
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66, y: 33.5}
+        - {x: -66, y: -33.5}
+        - {x: 66, y: -33.5}
+        - {x: 66, y: 30.5}
+        - {x: 32, y: 33.5}
+    - name: ground tiles_2
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 262
+        width: 132
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 34}
+        - {x: -66, y: 34}
+        - {x: -66, y: -34}
+        - {x: 66, y: -34}
+        - {x: 66, y: 7}
+        - {x: 46, y: 25}
+      - - {x: 63, y: 9}
+        - {x: 65, y: 7}
+        - {x: 66, y: 7}
+        - {x: 66, y: 15}
+        - {x: 63, y: 14}
+      - - {x: 41, y: 22}
+        - {x: 39, y: 20}
+        - {x: 39, y: 18}
+        - {x: 41, y: 16}
+        - {x: 43, y: 16}
+        - {x: 45, y: 18}
+        - {x: 45, y: 20}
+        - {x: 43, y: 22}
+      - - {x: 62, y: 23}
+        - {x: 62, y: 21}
+        - {x: 65, y: 18}
+        - {x: 66, y: 18}
+        - {x: 66, y: 26}
+        - {x: 65, y: 26}
+    - name: ground tiles_3
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 161
+        width: 133
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 33.5}
+        - {x: -66.5, y: 8.5}
+        - {x: -66.5, y: -33.5}
+        - {x: 66.5, y: -33.5}
+        - {x: 66.5, y: 31.5}
+        - {x: 65.5, y: 33.5}
+      - - {x: -66.5, y: 7.5}
+        - {x: -63.5, y: 8.5}
+        - {x: -63.5, y: 13.5}
+        - {x: -65.5, y: 15.5}
+        - {x: -66.5, y: 15.5}
+      - - {x: -40.5, y: 22.5}
+        - {x: -45.5, y: 22.5}
+        - {x: -45.5, y: 17.5}
+        - {x: -43.5, y: 16.5}
+        - {x: -40.5, y: 16.5}
+        - {x: -39.5, y: 18.5}
+        - {x: -39.5, y: 21.5}
+      - - {x: -66.5, y: 26.5}
+        - {x: -66.5, y: 18.5}
+        - {x: -65.5, y: 18.5}
+        - {x: -62.5, y: 21.5}
+        - {x: -62.5, y: 23.5}
+        - {x: -65.5, y: 26.5}
+    - name: ground tiles_4
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 161
+        width: 132
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 33}
+        - {x: -66, y: 31}
+        - {x: -66, y: -33}
+        - {x: 66, y: -33}
+        - {x: 66, y: 33}
+    - name: ground tiles_5
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 162
+        width: 133
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59.5, y: 34}
+        - {x: -66.5, y: 32}
+        - {x: -66.5, y: -34}
+        - {x: 66.5, y: -34}
+        - {x: 66.5, y: 30}
+        - {x: 58.5, y: 34}
+    - name: ground tiles_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 44
+        width: 132
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66, y: 37}
+        - {x: -66, y: -37}
+        - {x: 66, y: -37}
+        - {x: 66, y: 33}
+        - {x: 58, y: 37}
+    - name: ground tiles_7
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 44
+        width: 132
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -37, y: 36.5}
+        - {x: -66, y: 32.5}
+        - {x: -66, y: -36.5}
+        - {x: 66, y: -36.5}
+        - {x: 66, y: 31.5}
+        - {x: 49, y: 36.5}
+    - name: ground tiles_8
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 44
+        width: 132
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -66, y: 18.5}
+        - {x: -66, y: -18.5}
+        - {x: 66, y: -18.5}
+        - {x: 66, y: 18.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
