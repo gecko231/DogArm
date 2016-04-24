@@ -1,6 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+# Don't try to show diffs for assets
+*.meta	-diff
+*.unity -diff
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 
