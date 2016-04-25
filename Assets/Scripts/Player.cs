@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+    public TheManager manager;
     bool facingRight = false;
     private Rigidbody2D rb;
     public float speed = 15f;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        manager = GameObject.Find("GameManager").GetComponent<TheManager>();
 
         playerGraphics = transform.FindChild("Graphics"); // get graphics object
         if(playerGraphics == null){
@@ -26,6 +28,20 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        switch (manager.gameState)
+        {
+            case GameState.Playing:
+                ProcessInput();
+                break;
+            case GameState.Paused:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void ProcessInput()
+    {
         // moving right
 	    if((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && rb.velocity.x < maxSpeed)
         {
