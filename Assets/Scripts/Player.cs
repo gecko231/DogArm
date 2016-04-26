@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
                 ProcessInput();
                 break;
             case GameState.Paused:
+            case GameState.Cutscene:
                 break;
             default:
                 break;

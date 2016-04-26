@@ -19,7 +19,10 @@ public class TheManager : MonoBehaviour {
 	
 	}
 
-
+    public void CutsceneStart()
+    {
+        gameState = GameState.Cutscene;
+    }
 
     public void Pause()
     {
