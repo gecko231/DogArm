@@ -182,10 +182,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 80327651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb3215ad8236a840b431e79650c9ffb, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f71a06a57d826418593b81a8a33102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerEntrance:
+  targetTag: Player
+  onWhat: 0
+  reaction:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 410160264}
@@ -4474,10 +4476,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1827426799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0fa4b2cc279ea47b7e15afe4e2374c, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f71a06a57d826418593b81a8a33102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onPlayerLeave:
+  targetTag: Player
+  onWhat: 2
+  reaction:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 688743341}
@@ -4486,6 +4490,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 688743340}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
