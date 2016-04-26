@@ -13,14 +13,18 @@ public class PlayerDiedResponder : MonoBehaviour {
         startPosition = player.transform.localPosition;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update () { }
+
+    public void SetCheckpoint(GameObject checkpoint)
+    {
+        Debug.Log("Setting checkpoint to " + checkpoint.name);
+        startPosition = checkpoint.transform.localPosition;
+    }
 
     public void OhFuck()
     {
         Debug.Log("Can you fucking not");
         player.transform.localPosition = startPosition;
+        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 }
