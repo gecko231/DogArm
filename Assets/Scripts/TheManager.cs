@@ -14,10 +14,12 @@ public class TheManager : MonoBehaviour {
     public GameObject pauseMenu;
     private float oldTimeScale;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
+    void Start () { }
+
+    public void Log(string msg)
+    {
+        Debug.Log(msg);
+    }
 
     public void CutsceneStart()
     {
