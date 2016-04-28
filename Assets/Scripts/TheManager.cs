@@ -15,12 +15,12 @@ public class TheManager : MonoBehaviour {
     public GameObject quickMenu;
     public GameObject quickSelector;
     public Image[] quickMenuPanels;
+    public int panelNum = 0;
     private bool isOpen = false;
 
     // Use this for initialization
     void Start() {
-        quickMenuPanels = GetComponents<Image>();
-        Debug.Log(quickMenuPanels.Length);
+        //Debug.Log(quickMenuPanels.Length);
     }
     public void Pause()
     {
@@ -38,80 +38,90 @@ public class TheManager : MonoBehaviour {
     {
         quickMenu.SetActive(true);
 
-        for (var i = 0; i < quickMenuPanels.Length; i++)
-        {
-            Debug.Log("Panel Number " + i + " is named " + quickMenuPanels[i].transform.position.x);
-        }
         quickSelector.SetActive(true);
 
-        quickSelector.transform.position = new Vector2(quickMenuPanels[0].transform.position.x, quickMenuPanels[0].transform.position.y);
+        quickSelector.transform.position = new Vector2(quickMenuPanels[panelNum].transform.position.x, quickMenuPanels[panelNum].transform.position.y);
     }
 
     public void QuickClose()
     {
         quickMenu.SetActive(false);
-        for (var i = 0; i < quickMenuPanels.Length; i++)
-        {
-        
-        }
+
         quickSelector.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            switch (gameState)
-            {
-                case GameState.Playing:
-                    Pause();
-                    break;
-                case GameState.Paused:
-                    Resume();
-                    break;
-                default:
-                    break;
-            }
+        if(isOpen == false) {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                switch (gameState)
+                {
+                    case GameState.Playing:
+                        Pause();
+                        break;
+                    case GameState.Paused:
+                        Resume();
+                        break;
+                    default:
+                        break;
+                }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            isOpen = !isOpen;
-            if (isOpen == false)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                QuickClose();
-            } else
-            {
+                isOpen = true;
                 QuickOpen();
             }
-        }
-
-        // I realize this isn't optimal
-        if (isOpen == true)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow) && (quickSelector.transform.position != quickMenuPanels[9].transform.position ||
-                quickSelector.transform.position != quickMenuPanels[10].transform.position || quickSelector.transform.position != quickMenuPanels[11].transform.position))
+        } else {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                quickSelector.transform.position = Vector2.right;
+                panelNum += 3;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                panelNum -= 3;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (panelNum == 2 || panelNum == 5 || panelNum == 8 || panelNum == 11)
+                {
+                    panelNum -= 2;
+                }
+                else
+                {
+                    panelNum += 1;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (panelNum == 0 || panelNum == 3 || panelNum == 6 || panelNum == 9)
+                {
+                    panelNum += 2;
+                }
+                else
+                {
+                    panelNum -= 1;
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.RightArrow) && (quickSelector.transform.position != quickMenuPanels[0].transform.position ||
-                quickSelector.transform.position != quickMenuPanels[1].transform.position || quickSelector.transform.position != quickMenuPanels[2].transform.position))
+            if (panelNum > 11)
             {
-                quickSelector.transform.position = Vector2.left;
+                panelNum -= 12;
             }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) && (quickSelector.transform.position != quickMenuPanels[0].transform.position ||
-                quickSelector.transform.position != quickMenuPanels[3].transform.position || 
-                quickSelector.transform.position != quickMenuPanels[6].transform.position || quickSelector.transform.position != quickMenuPanels[9].transform.position))
+            if (panelNum < 0)
             {
-                quickSelector.transform.position = Vector2.up;
+                panelNum += 12;
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) && (quickSelector.transform.position != quickMenuPanels[2].transform.position ||
-                quickSelector.transform.position != quickMenuPanels[5].transform.position ||
-                quickSelector.transform.position != quickMenuPanels[8].transform.position || quickSelector.transform.position != quickMenuPanels[11].transform.position))
+            //Debug.Log("Panel: " + panelNum);
+
+            quickSelector.transform.position = new Vector2(quickMenuPanels[panelNum].transform.position.x, quickMenuPanels[panelNum].transform.position.y);
+
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                quickSelector.transform.position = Vector2.down;
+                isOpen = false;
+                QuickClose();
             }
         }
     }

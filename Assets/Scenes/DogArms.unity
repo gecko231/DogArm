@@ -1107,18 +1107,19 @@ MonoBehaviour:
   quickMenu: {fileID: 1634429480}
   quickSelector: {fileID: 1122501771}
   quickMenuPanels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1475240721}
+  - {fileID: 1329898904}
+  - {fileID: 142414119}
+  - {fileID: 355754220}
+  - {fileID: 1750994334}
+  - {fileID: 1751507817}
+  - {fileID: 1265293264}
+  - {fileID: 70199052}
+  - {fileID: 1429905457}
+  - {fileID: 384215367}
+  - {fileID: 312189501}
+  - {fileID: 97157597}
+  panelNum: 0
 --- !u!1 &1122501771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,7 +1776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634429481
 RectTransform:
   m_ObjectHideFlags: 0
