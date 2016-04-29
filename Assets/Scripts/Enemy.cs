@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour {
 	int viewDistance = 4; //how far the enemy can see
 	int attackDistance = 1;
 	int health = 8;
+	public int damage = 1;
 	Transform player;
 	public LayerMask enemyMask;
 	Rigidbody2D myBody;

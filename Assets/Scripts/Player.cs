@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour {
 
@@ -8,6 +10,8 @@ public class Player : MonoBehaviour {
 	int timer = 30;
     private Rigidbody2D rb;
     public float speed = 15f;
+	public int health = 8;
+	private int startHealth;
     public float jumpForce = 175f;
     private float maxSpeed = 3f;
     private bool canJump = false;
@@ -18,11 +22,17 @@ public class Player : MonoBehaviour {
     Transform playerGraphics; // reference to graphics for changing direction
     Animator animator; // reference to the character animator
 
+	public Sprite halfBone;
+	public Sprite fullBone;
+	public Image[] bones;
+
+	public UnityEvent zeroHealth;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
+		startHealth = health;
         playerGraphics = transform.FindChild("Graphics"); // get graphics object
         if(playerGraphics == null){
             Debug.LogError("No Graphics Objects as a child of Player");
@@ -70,6 +80,50 @@ public class Player : MonoBehaviour {
 				timer = 30;
 			}
 		}
+
+		switch (health) {
+		case 8:
+			bones [0].enabled = bones [1].enabled = bones [2].enabled = bones [3].enabled = true;
+			bones [0].sprite = bones [1].sprite = bones [2].sprite = bones[3].sprite = fullBone;
+			break;
+		case 7:
+			bones [0].enabled = bones [1].enabled = bones [2].enabled = bones [3].enabled = true;
+			bones [0].sprite = bones [1].sprite = bones [2].sprite = fullBone;
+			bones [3].sprite = halfBone;
+			break;
+		case 6:
+			bones [0].enabled = bones [1].enabled = bones [2].enabled = true;
+			bones [3].enabled = false;
+			bones [0].sprite = bones [1].sprite = bones [2].sprite = fullBone;
+			break;
+		case 5:
+			bones [0].enabled = bones [1].enabled = bones [2].enabled = true;
+			bones [3].enabled = false;
+			bones [0].sprite = bones [1].sprite = fullBone;
+			bones [2].sprite = halfBone;
+			break;
+		case 4:
+			bones [0].enabled = bones [1].enabled = true;
+			bones [2].enabled = bones [3].enabled = false;
+			bones [0].sprite = bones [1].sprite = fullBone;
+			break;
+		case 3:
+			bones [0].enabled = bones [1].enabled = true;
+			bones [2].enabled = bones [3].enabled = false;
+			bones [0].sprite = fullBone;
+			bones [1].sprite = halfBone;
+			break;
+		case 2:
+			bones [0].enabled = true;
+			bones[1].enabled = bones [2].enabled = bones [3].enabled = false;
+			bones [0].sprite = fullBone;
+			break;
+		case 1:
+			bones [0].enabled = true;
+			bones[1].enabled = bones [2].enabled = bones [3].enabled = false;
+			bones [0].sprite = halfBone;
+			break;
+		}
     }
 
 	void FixedUpdate(){
@@ -85,8 +139,15 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void Hurt(){
-		//Change Health here
+	void Hurt(int damage){
+
+		health -= damage;
+
+		if (health <= 0) {
+			zeroHealth.Invoke ();
+			health = startHealth;
+		}
+
 		rb.velocity = Vector2.zero;
 		canMove = false;
 		StartCoroutine(HurtBlinker());
@@ -117,9 +178,25 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-		Enemy enemy = col.collider.GetComponent<Enemy> ();
-		if (enemy != null) {
-			Hurt();
+		switch (col.collider.transform.name) {
+			case "enemy1":
+				Enemy enemy = col.collider.GetComponent<Enemy> ();
+				Hurt (enemy.damage);
+				break;
+			case "dogbowl":
+				HealPlayer (8);
+				Destroy (col.gameObject);
+				break;
+			case "treat":
+				HealPlayer (4);
+				Destroy (col.gameObject);
+				break;
+			case "bone":
+				HealPlayer (2);
+				Destroy (col.gameObject);
+				break;
+			default:
+				break;
 		}
     }
 
@@ -131,4 +208,14 @@ public class Player : MonoBehaviour {
         theScale.x *= -1;
         playerGraphics.localScale = theScale;
     }
+
+	void HealPlayer (int healAmt)
+	{
+		health += healAmt;
+
+		if (health > startHealth)
+		{
+			health = startHealth;
+		}
+	}
 }
