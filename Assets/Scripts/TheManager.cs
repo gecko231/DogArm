@@ -54,7 +54,7 @@ public class TheManager : MonoBehaviour {
     /// Use this if it simplifies your code, but if you really need to check each
     /// Update, you can just keep a reference to TheManager.
     /// </summary>
-    public GameStateChange stateChangeListeners;
+    public GameStateChange stateChangeListeners = new GameStateChange();
 
     public GameState gameState
     {
@@ -115,7 +115,7 @@ public class TheManager : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown("Pawse"))
+        if (Input.GetAxis("Cancel") > 0.0)
         {
             switch (gameState)
             {
@@ -131,7 +131,7 @@ public class TheManager : MonoBehaviour {
                     break;
             }
         }
-        else if (Input.GetKeyDown("Quick Menu"))
+        else if (Input.GetAxis("Quick Menu") > 0.0)
         {
             switch (gameState)
             {
