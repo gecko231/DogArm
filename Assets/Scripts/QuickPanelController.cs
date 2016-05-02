@@ -26,23 +26,26 @@ public class QuickPanelController : MonoBehaviour {
             {
                 if (child.gameObject.name.StartsWith("QuickMenu"))
                 {
+                    Debug.Log("Found quick menu");
                     quickMenu = child.gameObject;
                     break;
                 }
             }
         }
 
-        if (quickMenuPanels == null)
+        if (quickMenuPanels.Length == 0)
         {
             List<GameObject> panels = new List<GameObject>();
             foreach (Transform child in quickMenu.transform)
             {
                 if (child.gameObject.name.StartsWith("Panel"))
                 {
+                    Debug.Log("Found panel");
                     panels.Add(child.gameObject);
                 }
                 else if (quickSelector == null && child.gameObject.name.StartsWith("Selector"))
                 {
+                    Debug.Log("Found selector");
                     quickSelector = child.gameObject;
                 }
             }
@@ -78,6 +81,7 @@ public class QuickPanelController : MonoBehaviour {
 
     private void UpdatePosition()
     {
+        Debug.Log("position " + posn.Index);
         quickSelector.transform.localPosition = quickMenuPanels[posn.Index].transform.localPosition;
     }
 

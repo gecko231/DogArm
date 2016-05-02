@@ -115,7 +115,7 @@ public class TheManager : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetAxis("Cancel") > 0.0)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             switch (gameState)
             {
@@ -131,7 +131,7 @@ public class TheManager : MonoBehaviour {
                     break;
             }
         }
-        else if (Input.GetAxis("Quick Menu") > 0.0)
+        else if (Input.GetKeyDown(KeyCode.Tab))
         {
             switch (gameState)
             {

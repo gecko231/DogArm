@@ -9,6 +9,8 @@
     {
         width = w;
         height = h;
+        x = 0;
+        y = 0;
     }
 
     public GridAddress(int w, int h, int x, int y)
@@ -23,7 +25,7 @@
     {
         get
         {
-            return (y * height) + x;
+            return (y * (height-1)) + x;
         }
     }
 
