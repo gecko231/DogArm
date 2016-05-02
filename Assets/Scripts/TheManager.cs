@@ -13,14 +13,13 @@ public class TheManager : MonoBehaviour {
     public GameState gameState;
     public GameObject pauseMenu;
     public GameObject quickMenu;
-    public GameObject quickSelector;
+    public GameObject quickSelector; 
     public Image[] quickMenuPanels;
     public int panelNum = 0;
-    private bool isOpen = false;
-
+    public bool isOpen = false;
     // Use this for initialization
     void Start() {
-        //Debug.Log(quickMenuPanels.Length);
+       
     }
     public void Pause()
     {
