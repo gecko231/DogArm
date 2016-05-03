@@ -47,8 +47,6 @@ public class TheManager : MonoBehaviour {
     /// </summary>
     public GameState _gameState = GameState.Playing;
 
-    private GameState oldState;
-
     /// <summary>
     /// A list of event listeners for state changes.
     /// Use this if it simplifies your code, but if you really need to check each
@@ -64,7 +62,7 @@ public class TheManager : MonoBehaviour {
         }
         set
         {
-            oldState = _gameState;
+            var oldState = _gameState;
             _gameState = value;
             stateChangeListeners.Invoke(oldState, _gameState);
         }
@@ -89,7 +87,7 @@ public class TheManager : MonoBehaviour {
 
     public void Resume()
     {
-        gameState = oldState;
+        gameState = GameState.Playing;
         // TODO: move this to a separate script?
         pauseMenu.SetActive(false);
         Time.timeScale = oldTimeScale;
@@ -97,10 +95,13 @@ public class TheManager : MonoBehaviour {
 
     public void OpenInGameMenu()
     {
+        if (gameState == GameState.Paused) return;
         // this just makes using Resume() easier
         oldTimeScale = Time.timeScale;
         gameState = GameState.InGameMenu;
     }
+
+    public bool RequestTransition 	
 
     #endregion
 

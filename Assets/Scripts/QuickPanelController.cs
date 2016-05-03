@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum QuickPanelState
+{
+    Closed,
+    Open,
+    // ignoring input
+    Silenced,
+}
+
 public class QuickPanelController : MonoBehaviour {
     public GameObject quickMenu;
     public GameObject quickSelector;
@@ -8,7 +16,30 @@ public class QuickPanelController : MonoBehaviour {
     public int width;
     public int height;
     public GridAddress posn;
-    private bool isOpen = false;
+    private bool positionDirty = true;
+    public QuickPanelState state;
+
+    // checks if the visual container is active. DOES NOT
+    // check our state
+    private bool isOpen { get { return quickMenu.Active; } }
+
+    void Close()
+    {
+        quickMenu.SetActive(false);
+        state = QuickPanelState.Closed;
+    }
+
+    void CloseSilenced()
+    {
+        quickMenu.SetActive(false);
+        state = QuickPanelState.Silenced;
+    }
+
+    void Open()
+    {
+        quickMenu.SetActive(true);
+        state = QuickPanelState.Open;
+    }
 
     // Use this for initialization
     void Start()
@@ -16,9 +47,29 @@ public class QuickPanelController : MonoBehaviour {
         posn = new GridAddress(width, height);
         TheManager.Instance.stateChangeListeners.AddListener(this.OnGameStateChange);
         SetupRefs();
+        Validate();
+
+        if (isOpen)
+        {
+            Open();
+        }
+        else
+        {
+            switch (TheManager.Instance.gameState)
+            {
+                case GameState.Paused:
+                case GameState.InGameMenu:
+                case GameState.Cutscene:
+                    CloseSilenced();
+                    break;
+                case GameState.Playing:
+                    Close();
+                    break;
+            }
+        }
     }
 
-    public void SetupRefs()
+    void SetupRefs()
     {
         if (quickMenu == null)
         {
@@ -36,6 +87,7 @@ public class QuickPanelController : MonoBehaviour {
         if (quickMenuPanels.Length == 0)
         {
             List<GameObject> panels = new List<GameObject>();
+            // TODO: if we go to another more nested structure, this will have to change
             foreach (Transform child in quickMenu.transform)
             {
                 if (child.gameObject.name.StartsWith("Panel"))
@@ -53,49 +105,90 @@ public class QuickPanelController : MonoBehaviour {
         }
     }
 
-    void OnGameStateChange(GameState oldState, GameState newState)
+    void Validate()
     {
-        if (newState == GameState.InGameMenu)
+        if (quickMenu == null) Debug.Error("No quick menu found for QuickMenuController");
+
+        if (quickMenuPanels == null || quickMenuPanels.Length == 0) Debug.Error("No quick menu panels found for QuickMenuController");
+
+        if (width == 0 || height == 0) Debug.Error("0 width or height for QuickMenuController");
+    }
+
+    // state transition strategy: change our state first, then change global state
+    // so we know who the request came from
+    void Update()
+    {
+        switch (state)
         {
-            QuickOpen();
-        }
-        else if (oldState == GameState.InGameMenu)
-        {
-            QuickClose();
+            case Open:
+                if (Input.GetButtonDown("Quick Menu"))
+                {
+                    Close();
+                    TheManager.Instance.Resume();
+                    break;
+                }
+
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    posn.Right();
+                    positionDirty = true;
+                }
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    posn.Left();
+                    positionDirty = true;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    posn.Down();
+                    positionDirty = true;
+                }
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    posn.Up();
+                    positionDirty = true;
+                }
+
+                UpdatePosition();
+                break;
+            case Closed:
+                if (Input.GetButtonDown("Quick Menu"))
+                {
+                    Open();
+                    TheManager.Instance.OpenInGameMenu();
+                }
+                break;
+            case Silenced:
+                break;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnGameStateChange(GameState oldState, GameState newState)
     {
-        if (isOpen)
+        switch (newState)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow)) posn.Right();
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) posn.Left();
-            if (Input.GetKeyDown(KeyCode.DownArrow)) posn.Down();
-            if (Input.GetKeyDown(KeyCode.UpArrow)) posn.Up();
-
-            UpdatePosition();
+            case Paused:
+            case Cutscene:
+                CloseSilenced();
+                break;
+            case InGameMenu:
+                // if it's not open, then we didn't request it.
+                if (!isOpen) {
+                    CloseSilenced();
+                }
+                break;
+            case Playing:
+                // BACK TO LISTENING
+                Close();
+                break;
         }
     }
 
     private void UpdatePosition()
     {
+        if (!positionDirty) return;
         Debug.Log("position " + posn.Index);
         quickSelector.transform.localPosition = quickMenuPanels[posn.Index].transform.localPosition;
-    }
-
-    public void QuickOpen()
-    {
-        isOpen = true;
-        quickMenu.SetActive(true);
-
-        UpdatePosition();
-    }
-
-    public void QuickClose()
-    {
-        isOpen = false;
-        quickMenu.SetActive(false);
+        positionDirty = false;
     }
 }
