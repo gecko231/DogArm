@@ -101,8 +101,6 @@ public class TheManager : MonoBehaviour {
         gameState = GameState.InGameMenu;
     }
 
-    public bool RequestTransition 	
-
     #endregion
 
     void Awake()

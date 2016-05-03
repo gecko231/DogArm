@@ -5,15 +5,15 @@ public enum QuickPanelState
 {
     Closed,
     Open,
-    // ignoring input
-    Silenced,
 }
 
 public class QuickPanelController : MonoBehaviour {
     public GameObject quickMenu;
     public GameObject quickSelector;
     public GameObject[] quickMenuPanels;
+    [Range(1, int.MaxValue)]
     public int width;
+    [Range(1, int.MaxValue)]
     public int height;
     public GridAddress posn;
     private bool positionDirty = true;
@@ -21,27 +21,28 @@ public class QuickPanelController : MonoBehaviour {
 
     // checks if the visual container is active. DOES NOT
     // check our state
-    private bool isOpen { get { return quickMenu.Active; } }
+    private bool isOpen { get { return quickMenu.activeInHierarchy; } }
 
     void Close()
     {
         quickMenu.SetActive(false);
         state = QuickPanelState.Closed;
+        this.enabled = true;
     }
 
     void CloseSilenced()
     {
         quickMenu.SetActive(false);
-        state = QuickPanelState.Silenced;
+        this.enabled = false;
     }
 
     void Open()
     {
         quickMenu.SetActive(true);
         state = QuickPanelState.Open;
+        this.enabled = true;
     }
 
-    // Use this for initialization
     void Start()
     {
         posn = new GridAddress(width, height);
@@ -69,6 +70,7 @@ public class QuickPanelController : MonoBehaviour {
         }
     }
 
+    [ContextMenu("Find QuickMenu and Panels")]
     void SetupRefs()
     {
         if (quickMenu == null)
@@ -107,11 +109,11 @@ public class QuickPanelController : MonoBehaviour {
 
     void Validate()
     {
-        if (quickMenu == null) Debug.Error("No quick menu found for QuickMenuController");
+        if (quickMenu == null) Debug.LogError("No quick menu found for QuickMenuController", this);
 
-        if (quickMenuPanels == null || quickMenuPanels.Length == 0) Debug.Error("No quick menu panels found for QuickMenuController");
+        if (quickMenuPanels == null || quickMenuPanels.Length == 0) Debug.LogError("No quick menu panels found for QuickMenuController", this);
 
-        if (width == 0 || height == 0) Debug.Error("0 width or height for QuickMenuController");
+        if (width == 0 || height == 0) Debug.LogError("0 width or height for QuickMenuController", this);
     }
 
     // state transition strategy: change our state first, then change global state
@@ -120,7 +122,7 @@ public class QuickPanelController : MonoBehaviour {
     {
         switch (state)
         {
-            case Open:
+            case QuickPanelState.Open:
                 if (Input.GetButtonDown("Quick Menu"))
                 {
                     Close();
@@ -151,14 +153,12 @@ public class QuickPanelController : MonoBehaviour {
 
                 UpdatePosition();
                 break;
-            case Closed:
+            case QuickPanelState.Closed:
                 if (Input.GetButtonDown("Quick Menu"))
                 {
                     Open();
                     TheManager.Instance.OpenInGameMenu();
                 }
-                break;
-            case Silenced:
                 break;
         }
     }
@@ -167,17 +167,17 @@ public class QuickPanelController : MonoBehaviour {
     {
         switch (newState)
         {
-            case Paused:
-            case Cutscene:
+            case GameState.Paused:
+            case GameState.Cutscene:
                 CloseSilenced();
                 break;
-            case InGameMenu:
+            case GameState.InGameMenu:
                 // if it's not open, then we didn't request it.
                 if (!isOpen) {
                     CloseSilenced();
                 }
                 break;
-            case Playing:
+            case GameState.Playing:
                 // BACK TO LISTENING
                 Close();
                 break;
