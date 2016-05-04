@@ -1,11 +1,14 @@
-﻿public class GridAddress
+﻿/// <summary>
+/// NOTE: we are ignoring the heck outta overflow
+/// </summary>
+public class GridAddress
 {
-    public int width;
-    public int height;
-    public int x;
-    public int y;
+    public uint width;
+    public uint height;
+    public uint x;
+    public uint y;
 
-    public GridAddress(int w, int h)
+    public GridAddress(uint w, uint h)
     {
         width = w;
         height = h;
@@ -13,7 +16,7 @@
         y = 0;
     }
 
-    public GridAddress(int w, int h, int x, int y)
+    public GridAddress(uint w, uint h, uint x, uint y)
     {
         width = w;
         height = h;
@@ -21,18 +24,18 @@
         this.y = y;
     }
 
-    public int Index
+    public uint Index
     {
         get
         {
-            return (y * (height-1)) + x;
+            return (y * (width)) + x;
         }
     }
 
     public void Left()
     {
         var newX = x - 1;
-        if (newX < 0)
+        if (newX == uint.MaxValue)
         {
             newX = width-1;
             Up();
@@ -43,7 +46,7 @@
     public void Right()
     {
         var newX = x + 1;
-        if (newX >= width)
+        if (newX > (width-1))
         {
             newX = 0;
             Down();
@@ -54,7 +57,7 @@
     public void Up()
     {
         var newY = y - 1;
-        if (newY < 0)
+        if (newY == uint.MaxValue)
         {
             newY = height-1;
         }
@@ -64,7 +67,7 @@
     public void Down()
     {
         var newY = y + 1;
-        if (newY >= height)
+        if (newY > (height-1))
         {
             newY = 0;
         }

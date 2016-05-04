@@ -1,51 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public enum QuickPanelState
-{
-    Closed,
-    Open,
-}
-
+/// <summary>
+/// The QuickPanelController controls the appearance and use of
+/// the Quick Menu.
+/// </summary>
 public class QuickPanelController : MonoBehaviour {
     public GameObject quickMenu;
     public GameObject quickSelector;
     public GameObject[] quickMenuPanels;
-    [Range(1, int.MaxValue)]
-    public int width;
-    [Range(1, int.MaxValue)]
-    public int height;
+
+    // 0 isn't actually valid but we want warnings about the defaults
+    // for some reason, using int.MaxValue causes it to go negative in unity,
+    // and using uint makes it not move at all.
+    [Range(0, 100)]
+    public uint width = 0;
+    [Range(0, 100)]
+    public uint height = 0;
     public GridAddress posn;
     private bool positionDirty = true;
-    public QuickPanelState state;
 
-    // checks if the visual container is active. DOES NOT
-    // check our state
+    /// <summary>
+    /// checks if the visual container is active.
+    /// </summary>
     private bool isOpen { get { return quickMenu.activeInHierarchy; } }
 
     void Close()
     {
         quickMenu.SetActive(false);
-        state = QuickPanelState.Closed;
-        this.enabled = true;
-    }
-
-    void CloseSilenced()
-    {
-        quickMenu.SetActive(false);
-        this.enabled = false;
     }
 
     void Open()
     {
         quickMenu.SetActive(true);
-        state = QuickPanelState.Open;
-        this.enabled = true;
     }
 
     void Start()
     {
-        posn = new GridAddress(width, height);
+        posn = new GridAddress((uint)width, (uint)height);
         TheManager.Instance.stateChangeListeners.AddListener(this.OnGameStateChange);
         SetupRefs();
         Validate();
@@ -61,7 +53,8 @@ public class QuickPanelController : MonoBehaviour {
                 case GameState.Paused:
                 case GameState.InGameMenu:
                 case GameState.Cutscene:
-                    CloseSilenced();
+                    this.enabled = false;
+                    Close();
                     break;
                 case GameState.Playing:
                     Close();
@@ -107,58 +100,79 @@ public class QuickPanelController : MonoBehaviour {
         }
     }
 
+    [ContextMenu("Validate")]
     void Validate()
     {
-        if (quickMenu == null) Debug.LogError("No quick menu found for QuickMenuController", this);
+        if (quickMenu == null)
+            Debug.LogError("No quick menu found for QuickMenuController", this);
 
-        if (quickMenuPanels == null || quickMenuPanels.Length == 0) Debug.LogError("No quick menu panels found for QuickMenuController", this);
+        if (quickMenuPanels == null || quickMenuPanels.Length == 0)
+            Debug.LogError("No quick menu panels found for QuickMenuController", this);
 
-        if (width == 0 || height == 0) Debug.LogError("0 width or height for QuickMenuController", this);
+        if (width == 0 || height == 0)
+            Debug.LogError("0 width or height for QuickMenuController", this);
+    }
+    void OnValidate() { Validate(); }
+
+    void ProcessMovementInput()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            posn.Right();
+            positionDirty = true;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            posn.Left();
+            positionDirty = true;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            posn.Down();
+            positionDirty = true;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            posn.Up();
+            positionDirty = true;
+        }
+
+        UpdatePosition();
     }
 
     // state transition strategy: change our state first, then change global state
     // so we know who the request came from
     void Update()
     {
-        switch (state)
+        switch (TheManager.Instance.gameState)
         {
-            case QuickPanelState.Open:
+            case GameState.Playing:
                 if (Input.GetButtonDown("Quick Menu"))
                 {
-                    Close();
-                    TheManager.Instance.Resume();
-                    break;
+                    if (TheManager.Instance.TryOpenInGameMenu(this))
+                    {
+                        Open();
+                    }
                 }
-
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    posn.Right();
-                    positionDirty = true;
-                }
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    posn.Left();
-                    positionDirty = true;
-                }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    posn.Down();
-                    positionDirty = true;
-                }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    posn.Up();
-                    positionDirty = true;
-                }
-
-                UpdatePosition();
                 break;
-            case QuickPanelState.Closed:
-                if (Input.GetButtonDown("Quick Menu"))
+            case GameState.InGameMenu:
+                if (isOpen)
                 {
-                    Open();
-                    TheManager.Instance.OpenInGameMenu();
+                    if (Input.GetButtonDown("Quick Menu"))
+                    {
+                        if (TheManager.Instance.TryCloseInGameMenu(this))
+                        {
+                            Close();
+                            return;
+                        }
+                    }
+                    ProcessMovementInput();
                 }
+                break;
+            case GameState.Null:
+            case GameState.Paused:
+            case GameState.Cutscene:
+            default:
                 break;
         }
     }
@@ -168,18 +182,17 @@ public class QuickPanelController : MonoBehaviour {
         switch (newState)
         {
             case GameState.Paused:
+                // stop listening for input, but remain open for when we go back.
+                this.enabled = false;
+                break;
             case GameState.Cutscene:
-                CloseSilenced();
+                Close();
+                this.enabled = false;
                 break;
             case GameState.InGameMenu:
-                // if it's not open, then we didn't request it.
-                if (!isOpen) {
-                    CloseSilenced();
-                }
-                break;
+                // checks to see if we're in this because of this object so we coo
             case GameState.Playing:
-                // BACK TO LISTENING
-                Close();
+                this.enabled = true;
                 break;
         }
     }
@@ -187,7 +200,7 @@ public class QuickPanelController : MonoBehaviour {
     private void UpdatePosition()
     {
         if (!positionDirty) return;
-        Debug.Log("position " + posn.Index);
+        Debug.Log("position " + posn.Index + ", " + Time.frameCount);
         quickSelector.transform.localPosition = quickMenuPanels[posn.Index].transform.localPosition;
         positionDirty = false;
     }

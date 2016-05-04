@@ -29,8 +29,7 @@ public enum GameState
 public class GameStateChange : UnityEvent<GameState, GameState> { };
 
 public class TheManager : MonoBehaviour {
-    private static TheManager instance;
-    public static TheManager Instance { get { return instance; } }
+    public static TheManager Instance { get; private set; }
 
     /// <summary>
     /// This section tracks the current overall game state,
@@ -46,6 +45,8 @@ public class TheManager : MonoBehaviour {
     /// Don't set this from within code.
     /// </summary>
     public GameState _gameState = GameState.Playing;
+    private GameState priorState; // for resuming from pause
+    private System.Object inGameMenuHolder; // the object holding open the current In Game Menu
 
     /// <summary>
     /// A list of event listeners for state changes.
@@ -60,7 +61,7 @@ public class TheManager : MonoBehaviour {
         {
             return _gameState;
         }
-        set
+        private set
         {
             var oldState = _gameState;
             _gameState = value;
@@ -71,13 +72,17 @@ public class TheManager : MonoBehaviour {
     public GameObject pauseMenu;
     private float oldTimeScale;
 
-    public void CutsceneStart()
+    public bool TryCutsceneStart()
     {
+        if (gameState == GameState.Paused) return false;
+        priorState = gameState;
         gameState = GameState.Cutscene;
+        return true;
     }
 
     public void Pause()
     {
+        priorState = gameState;
         gameState = GameState.Paused;
         // TODO: move this to a separate script?
         pauseMenu.SetActive(true);
@@ -87,25 +92,42 @@ public class TheManager : MonoBehaviour {
 
     public void Resume()
     {
-        gameState = GameState.Playing;
+        gameState = priorState;
+        priorState = GameState.Null;
         // TODO: move this to a separate script?
         pauseMenu.SetActive(false);
         Time.timeScale = oldTimeScale;
     }
 
-    public void OpenInGameMenu()
+    public bool TryOpenInGameMenu(System.Object holder)
     {
-        if (gameState == GameState.Paused) return;
-        // this just makes using Resume() easier
-        oldTimeScale = Time.timeScale;
+        if (gameState == GameState.Paused) return false;
+        // TODO: ingamemenu hierarchy
+        inGameMenuHolder = holder;
         gameState = GameState.InGameMenu;
+        return true;
+    }
+
+    public bool TryCloseInGameMenu(System.Object holder)
+    {
+        if (gameState == GameState.InGameMenu)
+        {
+            if (holder != inGameMenuHolder)
+            {
+                Debug.LogError("Non-menu holder tried to close menu");
+                return false;
+            }
+            gameState = GameState.Playing;
+            return true;
+        }
+        return false;
     }
 
     #endregion
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()
@@ -127,25 +149,6 @@ public class TheManager : MonoBehaviour {
                     Resume();
                     break;
                 default:
-                    break;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            switch (gameState)
-            {
-                case GameState.Playing:
-                    OpenInGameMenu();
-                    break;
-                case GameState.InGameMenu:
-                    //TODO: make separate?
-                    Resume();
-                    break;
-                case GameState.Paused:
-                case GameState.Cutscene:
-                case GameState.Null:
-                default:
-                    // nada
                     break;
             }
         }
