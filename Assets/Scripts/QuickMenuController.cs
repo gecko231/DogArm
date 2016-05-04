@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 
 /// <summary>
-/// The QuickPanelController controls the appearance and use of
+/// The QuickMenuController controls the appearance and use of
 /// the Quick Menu.
 /// </summary>
-public class QuickPanelController : MonoBehaviour {
+public class QuickMenuController : MonoBehaviour {
     public GameObject quickMenu;
     public GameObject quickSelector;
     public GameObject[] quickMenuPanels;
@@ -72,14 +72,13 @@ public class QuickPanelController : MonoBehaviour {
             {
                 if (child.gameObject.name.StartsWith("QuickMenu"))
                 {
-                    Debug.Log("Found quick menu");
                     quickMenu = child.gameObject;
                     break;
                 }
             }
         }
 
-        if (quickMenuPanels.Length == 0)
+        if (quickMenuPanels == null || quickMenuPanels.Length == 0)
         {
             List<GameObject> panels = new List<GameObject>();
             // TODO: if we go to another more nested structure, this will have to change
@@ -87,8 +86,18 @@ public class QuickPanelController : MonoBehaviour {
             {
                 if (child.gameObject.name.StartsWith("Panel"))
                 {
-                    Debug.Log("Found panel");
                     panels.Add(child.gameObject);
+                    if (quickSelector == null)
+                    {
+                        foreach (Transform panelChild in child.transform)
+                        {
+                            if (panelChild.gameObject.name.StartsWith("Selector"))
+                            {
+                                quickSelector = panelChild.gameObject;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             quickMenuPanels = panels.ToArray();
