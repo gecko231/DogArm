@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<convo>
+  <speech speaker="Dingus McGee">Hello, friends.
+  This is an example of our conversation system.
+Note that indentation on the above line was preserved!</speech>
+  <speech speaker="Credulous Newcomer">But how does it work?</speech>
+  <speech speaker="Dingus McGee">idk meng</speech>
+  <speech>WHO IS TALKING RIGHT MEOW</speech>
+  <event>DoneTalking</event>
+</convo>
