@@ -12,6 +12,7 @@ GameObject:
   - 50: {fileID: 5012948}
   - 61: {fileID: 6101580}
   - 114: {fileID: 11440186}
+  - 61: {fileID: 6147902}
   m_Layer: 8
   m_Name: enemy1
   m_TagString: Enemy
@@ -59,9 +60,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.0023288727, y: 0.18571493}
+  m_Offset: {x: -0.04, y: 0.18571493}
   serializedVersion: 2
-  m_Size: {x: 0.26927435, y: 0.36033663}
+  m_Size: {x: 0.15, y: 0.36033663}
+--- !u!61 &6147902
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132888}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.09, y: 0.2}
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.15}
 --- !u!114 &11440186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53632fa1c63d8f447a43226381a6d845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
+  damage: 1
   enemyMask:
     serializedVersion: 2
     m_Bits: 4294967007

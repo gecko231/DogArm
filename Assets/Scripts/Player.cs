@@ -142,7 +142,7 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate(){
 		//Check to see if there is ground in front of us before moving
-		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * -0.15f + Vector2.up * -0.15f;
+		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * 0 + Vector2.up * -0.15f;
 		Debug.DrawLine (lineCastPos, lineCastPos + Vector2.down * 0.35f);
 		bool isGrounded = Physics2D.Linecast (lineCastPos, lineCastPos + Vector2.down * 0.35f, playerMask);
 
@@ -213,6 +213,13 @@ public class Player : MonoBehaviour {
 				break;
 		}
     }
+
+	void OnTriggerStay2D(Collider2D col){
+		//stop completely and attack if touching the player
+		if (col.transform.tag == "Enemy" && col.GetComponent<Enemy>().isAttacking) {
+			Hurt (2);
+		}
+	}
 
     void Flip (){
         // change the way the player is facing

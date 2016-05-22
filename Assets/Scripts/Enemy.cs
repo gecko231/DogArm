@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour {
 	float chaseSpeed = 2.75f;
 	float myWidth, myHeight;
 	int viewDistance = 4; //how far the enemy can see
-	int attackDistance = 1;
+	int attackCooldown = 20;
+	public bool isAttacking = false;
 	int health = 8;
 	public int damage = 1;
 	Transform player;
@@ -38,7 +39,7 @@ public class Enemy : MonoBehaviour {
 	void FixedUpdate () {
 
 		//Check to see if there is ground in front of us before moving
-		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * myWidth + Vector2.up * (myHeight - 0.4f);
+		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * (myWidth - .12f) + Vector2.up * (myHeight - 0.4f);
 		Debug.DrawLine (lineCastPos, lineCastPos + Vector2.down * 0.35f);
 		bool isGrounded = Physics2D.Linecast (lineCastPos, lineCastPos + Vector2.down * 0.35f, enemyMask);
 		bool isBlocked = Physics2D.Linecast (lineCastPos, lineCastPos - myTrans.right.toVector2() * 0.05f, enemyMask);
@@ -76,29 +77,41 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		ChangeState ();
+		if (current != EnemyState.Attack) {
+			attackCooldown--;
+		}
 	}
 
-	void Attack(){
-
+	IEnumerator Attack(){
+		yield return new WaitForSeconds (0.2f);
+		isAttacking = true;
+		yield return new WaitForSeconds (1f);
+		isAttacking = false;
+		current = EnemyState.Patrol;
 	}
 
 	void ChangeState(){
 
 		//Patrol or Chase
-		if(Vector2.Distance(myTrans.position,player.position) < viewDistance && current != EnemyState.Death){
+		if(Vector2.Distance(myTrans.position,player.position) < viewDistance && (current != EnemyState.Death && current != EnemyState.Attack)){
 			current = EnemyState.Chase;
-		} else if(current == EnemyState.Chase && current != EnemyState.Death){
+		} else if(current == EnemyState.Chase && (current != EnemyState.Death && current != EnemyState.Attack)){
 			current = EnemyState.Patrol;
-		}
-
-		//Attacking
-		if(Vector2.Distance(myTrans.position,player.position) < attackDistance && current != EnemyState.Death){
-			current = EnemyState.Attack;
 		}
 
 		//Death
 		if(health <= 0){
 			current = EnemyState.Death;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+		//stop completely and attack if touching the player
+		if (col.transform.tag == "Player" && current != EnemyState.Death && attackCooldown <= 0) {
+			current = EnemyState.Attack;
+			myBody.velocity = Vector2.zero;
+			StartCoroutine(Attack ());
+			Debug.Log ("Attacking");
 		}
 	}
 }
