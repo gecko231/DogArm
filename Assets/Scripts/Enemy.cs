@@ -7,7 +7,8 @@ public enum EnemyState{
 	Attack,
 	Hit,
 	Stunned,
-	Death
+	Death,
+	Wait
 }
 
 public class Enemy : MonoBehaviour {
@@ -25,11 +26,13 @@ public class Enemy : MonoBehaviour {
 	public LayerMask enemyMask;
 	Rigidbody2D myBody;
 	Transform myTrans;
+	Animator myAnim;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag("Player").transform;
 		myBody = this.GetComponent<Rigidbody2D>();
-		SpriteRenderer mySprite = this.GetComponent<SpriteRenderer> ();
+		myAnim = this.GetComponent<Animator> ();
+		SpriteRenderer mySprite = this.GetComponentInChildren<SpriteRenderer> ();
 		myWidth = mySprite.bounds.extents.x;
 		myHeight = mySprite.bounds.extents.y;
 		myTrans = this.transform;
@@ -39,7 +42,7 @@ public class Enemy : MonoBehaviour {
 	void FixedUpdate () {
 
 		//Check to see if there is ground in front of us before moving
-		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * (myWidth - .12f) + Vector2.up * (myHeight - 0.4f);
+		Vector2 lineCastPos = myTrans.position.toVector2() - myTrans.right.toVector2() * (myWidth - .12f) + Vector2.up * (myHeight - 0.6f);
 		Debug.DrawLine (lineCastPos, lineCastPos + Vector2.down * 0.35f);
 		bool isGrounded = Physics2D.Linecast (lineCastPos, lineCastPos + Vector2.down * 0.35f, enemyMask);
 		bool isBlocked = Physics2D.Linecast (lineCastPos, lineCastPos - myTrans.right.toVector2() * 0.05f, enemyMask);
@@ -76,6 +79,9 @@ public class Enemy : MonoBehaviour {
 				myBody.velocity = myVel;
 			}
 		}
+		if (current == EnemyState.Attack) {
+			myBody.velocity = Vector2.zero;
+		}
 		ChangeState ();
 		if (current != EnemyState.Attack) {
 			attackCooldown--;
@@ -83,10 +89,18 @@ public class Enemy : MonoBehaviour {
 	}
 
 	IEnumerator Attack(){
-		yield return new WaitForSeconds (0.2f);
+		myAnim.SetBool ("Idle",true);
+		yield return new WaitForSeconds (0.5f);
+		myAnim.SetBool ("Attacking",true);
+		yield return new WaitForSeconds (0.1f);
 		isAttacking = true;
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (0.2f);
+		myAnim.SetBool ("Attacking", false);
+		yield return new WaitForSeconds (0.1f);
 		isAttacking = false;
+		yield return new WaitForSeconds (0.5f);
+		myAnim.SetBool ("Idle",false);
+		yield return new WaitForSeconds (0.1f);
 		current = EnemyState.Patrol;
 	}
 

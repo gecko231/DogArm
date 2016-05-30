@@ -1,17 +1,17 @@
 fileFormatVersion: 2
 guid: 9e89a8dca6c98614b825b7833e256bc5
-timeCreated: 1460938445
+timeCreated: 1464571710
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: enemy1_0
-    21300002: enemy1_1
-    21300004: enemy1_2
-    21300006: enemy1_3
-    21300008: enemy1_4
-    21300010: enemy1_5
-    21300012: enemy1_6
-    21300014: enemy1_7
+    21300000: Enemy1_0
+    21300002: Enemy1_1
+    21300004: Enemy1_2
+    21300006: Enemy1_3
+    21300008: Enemy1_4
+    21300010: Enemy1_5
+    21300012: Enemy1_6
+    21300014: Enemy1_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,108 +58,157 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: enemy1_0
+    - name: Enemy1_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 429
-        width: 28
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: enemy1_1
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 430
-        width: 31
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: enemy1_2
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 430
-        width: 29
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: enemy1_3
-      rect:
-        serializedVersion: 2
-        x: 197
-        y: 431
-        width: 30
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: enemy1_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 429
-        width: 32
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 37
+        y: 919
+        width: 58
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -16, y: 37}
-        - {x: -16, y: 2}
-        - {x: -15, y: 0}
-        - {x: 11, y: 0}
-        - {x: 16, y: 8}
-        - {x: 16, y: 35}
-        - {x: 11, y: 37}
-    - name: enemy1_5
+      - - {x: -29, y: 38}
+        - {x: -29, y: -38}
+        - {x: 19, y: -38}
+        - {x: 29, y: -21}
+        - {x: 29, y: 33}
+        - {x: 25, y: 38}
+    - name: Enemy1_1
       rect:
         serializedVersion: 2
-        x: 315
-        y: 429
-        width: 32
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 159
+        y: 920
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -15, y: 37}
-        - {x: -16, y: 34}
-        - {x: -16, y: 3}
-        - {x: -13, y: 0}
-        - {x: 15, y: 0}
-        - {x: 16, y: 5}
+      - - {x: -23, y: 37}
+        - {x: -29, y: 7}
+        - {x: -32, y: -11}
+        - {x: -32, y: -35}
+        - {x: -30, y: -37}
+        - {x: 15, y: -37}
+        - {x: 32, y: -13}
+        - {x: 32, y: 32}
         - {x: 16, y: 37}
-    - name: enemy1_6
+    - name: Enemy1_2
       rect:
         serializedVersion: 2
-        x: 376
-        y: 429
-        width: 30
-        height: 38
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 294
+        y: 920
+        width: 60
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: enemy1_7
+      outline:
+      - - {x: 9, y: 38}
+        - {x: -27, y: 38}
+        - {x: -30, y: 24}
+        - {x: -30, y: -38}
+        - {x: 20, y: -38}
+        - {x: 30, y: -17}
+        - {x: 30, y: 29}
+        - {x: 29, y: 30}
+    - name: Enemy1_3
       rect:
         serializedVersion: 2
-        x: 437
-        y: 429
-        width: 27
-        height: 38
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 423
+        y: 923
+        width: 61
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -30.5, y: 36.5}
+        - {x: -30.5, y: -36.5}
+        - {x: 13.5, y: -36.5}
+        - {x: 30.5, y: -11.5}
+        - {x: 30.5, y: 30.5}
+        - {x: 23.5, y: 36.5}
+    - name: Enemy1_4
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 919
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 20.5}
+        - {x: 9, y: 38.5}
+        - {x: -30, y: 38.5}
+        - {x: -33, y: 17.5}
+        - {x: -33, y: -29.5}
+        - {x: -32, y: -34.5}
+        - {x: -28, y: -38.5}
+        - {x: 17, y: -38.5}
+        - {x: 33, y: -13.5}
+        - {x: 33, y: 16.5}
+    - name: Enemy1_5
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 918
+        width: 67
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.5, y: 39.5}
+        - {x: -31.5, y: 38.5}
+        - {x: -33.5, y: 24.5}
+        - {x: -33.5, y: -37.5}
+        - {x: -22.5, y: -39.5}
+        - {x: 20.5, y: -39.5}
+        - {x: 33.5, y: -26.5}
+        - {x: 33.5, y: 25.5}
+        - {x: 23.5, y: 39.5}
+    - name: Enemy1_6
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 918
+        width: 64
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 40}
+        - {x: -32, y: 30}
+        - {x: -32, y: -38}
+        - {x: -27, y: -40}
+        - {x: 16, y: -40}
+        - {x: 32, y: -22}
+        - {x: 32, y: 27}
+        - {x: 3, y: 40}
+    - name: Enemy1_7
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 918
+        width: 57
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19.5, y: 39.5}
+        - {x: -28.5, y: 39.5}
+        - {x: -28.5, y: -39.5}
+        - {x: 5.5, y: -39.5}
+        - {x: 28.5, y: -10.5}
+        - {x: 28.5, y: 27.5}
+        - {x: 25.5, y: 37.5}
     outline: []
   spritePackingTag: 
   userData: 
