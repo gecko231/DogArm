@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Enemy
+  - QuickPanel
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 2441536979
+    locked: 0
+  - name: Bench
+    uniqueID: 2193003619
     locked: 0
   - name: Default
     uniqueID: 0
